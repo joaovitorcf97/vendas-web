@@ -15,7 +15,6 @@ import {
 import { UserType } from '../types/Usertype';
 
 const LoginScreen = () => {
-  const { accessToken, setAccessToken } = useGlobalContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loading, postRequest } = useRequests();
@@ -28,13 +27,11 @@ const LoginScreen = () => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = async () => {
-    const user = await postRequest<UserType>('http://localhost:8080/auth/login', {
+  const handleLogin = () => {
+    postRequest<UserType>('http://localhost:8080/auth/login', {
       email: email,
       password: password,
     });
-
-    setAccessToken(user?.accessToken || '');
   };
 
   return (
