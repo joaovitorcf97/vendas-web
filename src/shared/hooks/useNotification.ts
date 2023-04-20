@@ -1,5 +1,5 @@
 import { notification as NotificationAntd } from 'antd';
-import { Consumer, Context, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useGlobalContext } from './useGlobalContext';
 
