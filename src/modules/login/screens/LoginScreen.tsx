@@ -43,7 +43,7 @@ const LoginScreen = () => {
         <LimitedContainer>
           <SVGLogo />
           <TitleLogin level={2} type="secondary">
-            Login ({accessToken})
+            Login
           </TitleLogin>
           <Input
             title="Usuário"
