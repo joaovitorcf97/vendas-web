@@ -22,15 +22,16 @@ export const useRequests = () => {
       });
   };
 
-  const postRequest = async (url: string, body: unknown) => {
+  const postRequest = async <T>(url: string, body: unknown): Promise<T | undefined> => {
     setLoading(true);
-    const returnData = await connnetionAPIPost(url, body)
+    const returnData = await connnetionAPIPost<T>(url, body)
       .then((result) => {
         setNotification('Logado com sucesso', 'success');
         return result;
       })
       .catch((error: Error) => {
         setNotification(error.message, 'error');
+        return undefined;
       });
 
     setLoading(false);
