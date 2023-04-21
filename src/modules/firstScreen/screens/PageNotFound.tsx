@@ -18,7 +18,7 @@ const PageNotFound = () => {
       <Result
         status="404"
         title="Oppps..."
-        subTitle="Desculpa, está pagina não existe"
+        subTitle="Desculpa, está pagína não existe"
         extra={
           <Button onClick={handleOnClickButton} type="primary">
             Voltar ao inicio
