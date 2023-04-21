@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Button from '../../../shared/components/buttons/button/Button';
 import SVGLogo from '../../../shared/components/icons/SVGLogo';
 import Input from '../../../shared/components/inputs/input/Input';
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import {
   BackgroundImage,
@@ -12,12 +11,11 @@ import {
   LimitedContainer,
   TitleLogin,
 } from '../styles/loginScreen.styles';
-import { UserType } from '../types/Usertype';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { loading, postRequest } = useRequests();
+  const { loading, authRequest } = useRequests();
 
   const handleUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -28,7 +26,7 @@ const LoginScreen = () => {
   };
 
   const handleLogin = () => {
-    postRequest<UserType>('http://localhost:8080/auth/login', {
+    authRequest({
       email: email,
       password: password,
     });

@@ -2,19 +2,35 @@ import { Spin } from 'antd';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getAuhtorizationToken } from '../../../shared/functions/connections/auth';
+import { URL_USER } from '../../../shared/constants/urls';
+import {
+  getAuhtorizationToken,
+  unsetAuhtorizationToken,
+} from '../../../shared/functions/connections/auth';
+import { connnetionAPIGet } from '../../../shared/functions/connections/connectionAPI.';
 import { LoginRoutesEnum } from '../../login/routes';
 import { ProductRoutesEnum } from '../../product/routes';
 
 const FirtScreen = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    const token = getAuhtorizationToken();
-    if (token) {
-      navigate(ProductRoutesEnum.PRODUCT);
-    } else {
-      navigate(LoginRoutesEnum.LOGIN);
-    }
+    const verifyToken = async () => {
+      const token = getAuhtorizationToken();
+      if (token) {
+        await connnetionAPIGet(URL_USER)
+          .then(() => {
+            navigate(ProductRoutesEnum.PRODUCT);
+          })
+          .catch(() => {
+            unsetAuhtorizationToken();
+            navigate(LoginRoutesEnum.LOGIN);
+          });
+      } else {
+        navigate(LoginRoutesEnum.LOGIN);
+      }
+    };
+
+    verifyToken();
   }, []);
   return <Spin />;
 };
