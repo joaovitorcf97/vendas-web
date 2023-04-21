@@ -7,15 +7,15 @@ import { MethodsEnum } from '../../../shared/enums/methods.enum';
 import { useDataContext } from '../../../shared/hooks/useDataContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { ProductType } from '../../../shared/types/ProductType';
+import BoxImage from '../components/BoxImage';
 import Categorycolumn from '../components/CategoryColumn';
-import TootipImage from '../components/TooltipImage';
 
 const columns: ColumnsType<ProductType> = [
   {
-    title: 'Id',
-    dataIndex: 'id',
-    key: 'id',
-    render: (_, product) => <TootipImage product={product} />,
+    title: 'Images',
+    dataIndex: 'image',
+    key: 'image',
+    render: (_, product) => <BoxImage product={product} />,
   },
   {
     title: 'Nome',
