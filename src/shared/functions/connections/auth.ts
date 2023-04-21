@@ -14,22 +14,16 @@ export const setAuthorizationtoken = (token: string) => {
 
 export const getAuhtorizationToken = () => getItemStorate(AUTHORIZATION_KEY);
 
-export const verifyLoggedIn = async (setUser: (user: UserType) => void, user?: UserType) => {
+export const verifyLoggedIn = async () => {
   const token = getAuhtorizationToken();
   if (!token) {
     location.href = '/login';
   }
 
-  if (!user) {
-    await connnetionAPIGet<UserType>(URL_USER)
-      .then((userReturn) => {
-        setUser(userReturn);
-      })
-      .catch(() => {
-        unsetAuhtorizationToken();
-        location.href = '/login';
-      });
-  }
+  await connnetionAPIGet<UserType>(URL_USER).catch(() => {
+    unsetAuhtorizationToken();
+    location.href = '/login';
+  });
 
   return null;
 };
