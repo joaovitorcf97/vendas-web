@@ -43,22 +43,6 @@ export const useRequests = () => {
     return returnObject;
   };
 
-  const postRequest = async <T>(url: string, body: unknown): Promise<T | undefined> => {
-    setLoading(true);
-    const returnData = await connnetionAPIPost<T>(url, body)
-      .then((result) => {
-        setNotification('Logado com sucesso', 'success');
-        return result;
-      })
-      .catch((error: Error) => {
-        setNotification(error.message, 'error');
-        return undefined;
-      });
-
-    setLoading(false);
-    return returnData;
-  };
-
   const authRequest = async (body: unknown): Promise<void> => {
     setLoading(true);
 
@@ -79,7 +63,6 @@ export const useRequests = () => {
   return {
     loading,
     request,
-    postRequest,
     authRequest,
   };
 };
