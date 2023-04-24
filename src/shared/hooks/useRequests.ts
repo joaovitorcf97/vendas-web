@@ -43,7 +43,6 @@ export const useRequests = () => {
   };
 
   const authRequest = async (body: unknown): Promise<void> => {
-    const navigate = useNavigate();
     setLoading(true);
 
     await connnetionAPIPost<AuthType>(URL_AUTH, body)
@@ -51,10 +50,14 @@ export const useRequests = () => {
         setNotification('Logado com sucesso', 'success');
         setUser(result.user);
         setAuthorizationtoken(result.accessToken);
-        navigate(ProductRoutesEnum.PRODUCT);
+        location.href = '/';
+
+        return result;
       })
       .catch(() => {
         setNotification(ERROR_ENVALID_PASSWORD, 'error');
+
+        return undefined;
       });
 
     setLoading(false);
