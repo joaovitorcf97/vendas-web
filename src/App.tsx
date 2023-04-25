@@ -2,6 +2,7 @@ import type { Router as RemixRouter } from '@remix-run/router';
 import { useEffect } from 'react';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 
+import { categoryRoutes } from './modules/category/routes';
 import { firtScreenRoutes } from './modules/firstScreen/routes';
 import { loginRoutes } from './modules/login/routes';
 import { productRoutes } from './modules/product/routes';
@@ -13,7 +14,11 @@ import { useNotification } from './shared/hooks/useNotification';
 import { useRequests } from './shared/hooks/useRequests';
 
 const routes: RouteObject[] = [...loginRoutes];
-const routesLoggedIn: RouteObject[] = [...productRoutes, ...firtScreenRoutes].map((route) => ({
+const routesLoggedIn: RouteObject[] = [
+  ...productRoutes,
+  ...categoryRoutes,
+  ...firtScreenRoutes,
+].map((route) => ({
   ...route,
   loader: verifyLoggedIn,
 }));
