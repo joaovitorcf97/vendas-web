@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction } from 'react-router-dom';
 
+import { FirstScreenRoutesEnum } from '../../modules/firstScreen/routes';
 import { AuthType } from '../../modules/login/types/AuthType';
-import { ProductRoutesEnum } from '../../modules/product/routes';
 import { ERROR_ENVALID_PASSWORD } from '../constants/errosStatus';
 import { URL_AUTH } from '../constants/urls';
 import { setAuthorizationtoken } from '../functions/connections/auth';
@@ -42,7 +42,7 @@ export const useRequests = () => {
     return returnObject;
   };
 
-  const authRequest = async (body: unknown): Promise<void> => {
+  const authRequest = async (navigate: NavigateFunction, body: unknown): Promise<void> => {
     setLoading(true);
 
     await connnetionAPIPost<AuthType>(URL_AUTH, body)
@@ -50,7 +50,7 @@ export const useRequests = () => {
         setNotification('Logado com sucesso', 'success');
         setUser(result.user);
         setAuthorizationtoken(result.accessToken);
-        location.href = '/';
+        navigate(FirstScreenRoutesEnum.FIRST_SCREEN);
 
         return result;
       })
