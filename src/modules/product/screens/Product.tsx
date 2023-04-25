@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
 import Screen from '../../../shared/components/screen/screen';
+import { LimitedContainer } from '../../../shared/components/styles/limeted.styled';
 import Table from '../../../shared/components/table/table';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
@@ -15,7 +16,7 @@ import { ProductType } from '../../../shared/types/ProductType';
 import BoxImage from '../components/BoxImage';
 import Categorycolumn from '../components/CategoryColumn';
 import { ProductRoutesEnum } from '../routes';
-import { BoxButtons, LimitedSizeButton, LimitedSizeInput } from '../styles/product.style';
+import { BoxButtons } from '../styles/product.style';
 
 const { Search } = Input;
 
@@ -76,15 +77,15 @@ const Product = () => {
   return (
     <Screen listBreadcrumb={[{ name: 'HOME' }, { name: 'Produtos' }]}>
       <BoxButtons>
-        <LimitedSizeInput>
+        <LimitedContainer width={240}>
           <Search placeholder="Buscar produto" onSearch={onSearch} enterButton />
-        </LimitedSizeInput>
+        </LimitedContainer>
 
-        <LimitedSizeButton>
+        <LimitedContainer width={120}>
           <Button onClick={handleOnclickInsert} type="primary">
             Inserir
           </Button>
-        </LimitedSizeButton>
+        </LimitedContainer>
       </BoxButtons>
 
       <Table columns={columns} dataSource={productsFiltered} />

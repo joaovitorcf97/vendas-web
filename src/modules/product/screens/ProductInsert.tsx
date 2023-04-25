@@ -7,7 +7,6 @@ import Select from '../../../shared/components/inputs/select/select';
 import Screen from '../../../shared/components/screen/screen';
 import { DisplayFlexJustifyRight } from '../../../shared/components/styles/display.styled';
 import { LimitedContainer } from '../../../shared/components/styles/limeted.styled';
-import { useRequests } from '../../../shared/hooks/useRequests';
 import { useCategory } from '../../category/hooks/useCategory';
 import { useInsertProduct } from '../hooks/useInsertProduct';
 import { ProductRoutesEnum } from '../routes';
@@ -23,7 +22,7 @@ const ProductInsert = () => {
     disableButton,
   } = useInsertProduct();
   const { categories } = useCategory();
-  const { request } = useRequests();
+
   const navigate = useNavigate();
 
   const handleOnClickCancel = () => {
