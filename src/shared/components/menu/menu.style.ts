@@ -11,7 +11,7 @@ export const ContainerMenu = styled.div`
   top: 0;
   bottom: 0;
   width: 240px;
-  background-color: #14253d;
+  background-color: #001529;
 `;
 
 export const ContainerLogoName = styled.div`
