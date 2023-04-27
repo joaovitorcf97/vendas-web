@@ -3,18 +3,18 @@ import { useNavigate } from 'react-router-dom';
 
 import { URL_CATEGORY } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
-import { useDataContext } from '../../../shared/hooks/useDataContext';
-import { useGlobalContext } from '../../../shared/hooks/useGlobalContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
+import { useCategoryReducer } from '../../../store/reducers/categoryReducer/useCategoryResucer';
+import { useGlobalReducer } from '../../../store/reducers/globalReducer/useGlobalReducer';
 import { CategoryRoutesEnum } from '../routes';
 
 export const UseInsertCategory = () => {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [disableButton, setDisableButton] = useState(true);
-  const { setNotification } = useGlobalContext();
+  const { setNotification } = useGlobalReducer();
   const { request } = useRequests();
-  const { setCategories } = useDataContext();
+  const { setCategories } = useCategoryReducer();
   const navigate = useNavigate();
 
   useEffect(() => {
