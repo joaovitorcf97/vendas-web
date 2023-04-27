@@ -10,9 +10,9 @@ import Table from '../../../shared/components/table/table';
 import { URL_PRODUCT } from '../../../shared/constants/urls';
 import { MethodsEnum } from '../../../shared/enums/methods.enum';
 import { convertNumberToMoney } from '../../../shared/functions/money';
-import { useDataContext } from '../../../shared/hooks/useDataContext';
 import { useRequests } from '../../../shared/hooks/useRequests';
 import { ProductType } from '../../../shared/types/ProductType';
+import { useProductReducer } from '../../../store/reducers/productReducer/useProductReducer';
 import BoxImage from '../components/BoxImage';
 import Categorycolumn from '../components/CategoryColumn';
 import { ProductRoutesEnum } from '../routes';
@@ -49,7 +49,8 @@ const columns: ColumnsType<ProductType> = [
 ];
 
 const Product = () => {
-  const { products, setProducts } = useDataContext();
+  const { products, setProducts } = useProductReducer();
+
   const [productsFiltered, setProductsFiltered] = useState<ProductType[]>([]);
   const { request } = useRequests();
   const navigate = useNavigate();
