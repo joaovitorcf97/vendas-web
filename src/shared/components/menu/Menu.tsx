@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { CategoryRoutesEnum } from '../../../modules/category/routes';
+import { OrderRoutesEnum } from '../../../modules/orders/route';
 import { ProductRoutesEnum } from '../../../modules/product/routes';
 import { CompanyName, ContainerLogoName, ContainerMenu, LogoMenu } from './menu.style';
 
@@ -64,7 +65,7 @@ const Menu = () => {
       key: 'order',
       label: 'Pedidos',
       icon: <SafetyCertificateOutlined />,
-      //onClick: () => navigate(ProductRoutesEnum.PRODUCT),
+      onClick: () => navigate(OrderRoutesEnum.ORDER),
     },
     {
       key: 'user',

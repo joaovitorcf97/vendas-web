@@ -1,6 +1,5 @@
 import Search from 'antd/es/input/Search';
 import { ColumnsType } from 'antd/es/table';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../../shared/components/buttons/button/Button';
@@ -10,7 +9,6 @@ import { LimitedContainer } from '../../../shared/components/styles/limeted.styl
 import Table from '../../../shared/components/table/table';
 import { CategoryType } from '../../../shared/types/categoryType';
 import { useCategory } from '../hooks/useCategory';
-import { UseInsertCategory } from '../hooks/useInsertCategory';
 import { CategoryRoutesEnum } from '../routes';
 
 const columns: ColumnsType<CategoryType> = [
